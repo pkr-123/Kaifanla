@@ -1,0 +1,43 @@
+<div ng-include="'tpl/header.html'"></div>
+<div class="container">
+  <div class="panel">
+    <div class="panel-body">
+      <form ng-if="!result">
+        <div class="form-group">
+          <label for="username">联系人:</label>
+          <input ng-model="order.username" type="text" class="form-control" id="username">
+        </div>
+        <div class="form-group">
+          <label>性别:</label>
+          <div class="radio">
+            <label>
+              <input ng-model="order.sex" type="radio" name="sex" value="1">先生
+            </label>
+            <label>
+              <input ng-model="order.sex" type="radio" name="sex" value="2">女士
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tel">联系电话:</label>
+          <input ng-model="order.phone" type="tel" class="form-control" id="tel">
+        </div>
+        <div class="form-group">
+          <label for="tel">送餐地址:</label>
+          <textarea ng-model="order.addr" class="form-control" name="" id="" cols="15" rows="6"></textarea>
+        </div>
+        <input class="btn btn-success btn-block" type="button" value="确定下单" ng-click="submitOrder()">
+      </form>
+      <div ng-if="result.mes==='succ'" class="alert alert-success">
+        <h4>下单成功</h4>
+        <p>您的此次订单编号为：{{result.did}}</p>
+        <p>您可以在 <a href="#/myorder1/{{phone}}">用户中心</a>查看自己的订单</p>
+      </div>
+      <div ng-if="result.mes==='err'" class="alert alert-danger">
+        <h4>下单失败</h4>
+        <p>失败原因为：{{result.reason}}。</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'tpl/footer.html'"></div>
